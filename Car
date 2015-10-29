@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cstring>
+#include "car.h"
+
+using namespace std;
+
+//constructor, initializes attributes to zero using MotorVehicle
+Car::Car( const string & newName, const string & newMake, const 
+string & newModel, double miles, const string & newTrim):
+MotorVehicle(newName, newMake, newModel, miles) {
+  trim = newTrim;
+}
+
+//overriding print function
+void Car::print(){
+  MotorVehicle::print();
+  *out << "    Trim:   ";
+  *out << trim;
+  *out << endl;
+}
+//overriding read function
+void Car::read(){
+  MotorVehicle::read();
+  cout << "trim?" << endl;
+  cin >> trim;
+}
+//accessing trim
+string Car::getTrim() const {
+  return trim;
+}
+//setting trim
+void Car::setTrim(const string& Trim){
+  trim = Trim;
+}
