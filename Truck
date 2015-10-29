@@ -1,0 +1,34 @@
+
+#include <iostream>
+#include <cstring>
+#include "truck.h"
+using namespace std;
+
+Truck::Truck(const string & newName, const string & newMake,
+const string & newModel, double miles, double newCargs):
+MotorVehicle(newName, newMake, newModel, miles) {
+  cargoCapacity = 0;
+}
+
+//adding to print from MotorVehicle
+void Truck::print(){
+  MotorVehicle::print();
+  *out << "    Cargo Cap: ";
+  *out << cargoCapacity;
+  *out << endl;
+}
+//adding to read from MotorVehicle
+void Truck::read(){
+  MotorVehicle::read();
+  cout << "cargo capacity?" << endl;
+  cin >> cargoCapacity;
+}
+//cargo capacity accessor
+double Truck::getCargoCapacity() const{
+  return cargoCapacity;
+}
+
+//cargo capacity mutator
+void Truck::setCargoCapacity(double CargoCapacity){
+  cargoCapacity = CargoCapacity;
+}
