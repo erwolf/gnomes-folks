@@ -1,0 +1,40 @@
+// Purpose:  Defining the Vehicle class
+// Author:   Emily Wolf
+// Date:     18 Mar 2015
+#include <iostream>
+#include <cstring>
+#include "vehicle.h"
+using namespace std;
+
+ostream* Vehicle::out = &cout;
+//initializing with string (handles conversion)
+
+//converting from string to char*
+Vehicle::Vehicle(const string & title) { 
+
+  name = new char[title.length()+1];
+  strcpy(name, title.c_str());
+}
+//deep copy, only name changes	
+Vehicle::Vehicle (const Vehicle &A) {
+
+  name = new char[strlen(A.name)];
+  strcpy (name, A.name);
+}
+
+//creating a deep copy with this operator
+Vehicle& Vehicle::operator= (const Vehicle &A) {
+  if (this == &A) {
+      return *this;
+   }
+   
+  delete [] name;
+  strcpy (this ->name, A.name);
+  return *this;
+}
+
+Vehicle::~Vehicle() {
+	delete [] name;
+}
+
+
