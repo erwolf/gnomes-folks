@@ -1,0 +1,90 @@
+
+#include <iostream>
+#include <cstring>
+#include "motor_vehicle.h"
+using namespace std;
+
+
+MotorVehicle::~MotorVehicle(){ }
+
+//long constructor name required break
+MotorVehicle::MotorVehicle(const string & newName, const string 
+& newMake, const string & newModel, double miles):Vehicle(newName) {
+  make = newMake;
+  model = newModel;
+  mpg = miles;
+}
+
+//name accessor
+string MotorVehicle::getName() const{
+  return name;
+}
+
+//name mutator
+void MotorVehicle::setName(const string & newName) {
+  delete [] name;
+  name = new char[newName.length()+1];
+  strcpy(name, newName.c_str());
+}
+
+//make accessor
+string MotorVehicle::getMake() const{
+  return make;
+}
+
+//make mutator
+void MotorVehicle::setMake( const string &  Make){
+  make = Make;
+}
+
+//model accessor
+string MotorVehicle::getModel() const{
+  return model;
+}
+
+//model mutator
+void MotorVehicle::setModel(const string & Model){
+  model = Model;
+}
+
+//out accessor
+ostream& MotorVehicle::getOut() const{
+  return *out;
+}
+
+//out mutator
+void MotorVehicle::setOut(ostream & newOut) {
+  out = &newOut;
+}
+
+//overriding print imported from vehicle
+void MotorVehicle::print(){
+  *out << endl <<"Vehicle ";
+  *out << name << " has the following attributes: ";
+  *out << endl << "    Make:   ";
+  *out << make;
+  *out << endl << "    Model:  ";
+  *out << model;
+  *out << endl << "    MPG:    ";
+  *out << mpg;
+  *out << endl;
+}
+
+//overriding read first created in vehicle
+void MotorVehicle::read() {
+  string newName;
+  string miles;
+  cout << "What is the name of your vehicle:";
+  cin >> newName;
+  delete [] name;
+  name = new char[newName.length()+1];
+  strcpy(name, newName.c_str());
+  
+  cout << "What is the make of your vehicle:" <<endl;
+  cin >> make;
+  cout << "What is the model of your vehicle:" <<endl;
+  cin >> model;
+  cout << "Enter the MPG for a " <<name << ":" << endl;
+  cin >> miles;
+  mpg = atof(miles.c_str());
+}
