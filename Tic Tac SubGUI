@@ -1,0 +1,195 @@
+#include "SubGUIClass.h"
+
+SubGUIClass::SubGUIClass(wxWindow* parent)
+	:
+	GUIClass(parent)
+{
+	buttonBox[0] = m_button1;
+	buttonBox[1] = m_button2;
+	buttonBox[2] = m_button3;
+	buttonBox[3] = m_button4;
+	buttonBox[4] = m_button5;
+	buttonBox[5] = m_button6;
+	buttonBox[6] = m_button7;
+	buttonBox[7] = m_button8;
+	buttonBox[8] = m_button9;
+	statusBar->SetStatusText(currentPlayer + _T("'s turn!"));
+	this->SetStatusBarPane(-1);
+
+}
+//initializing static variables
+bool SubGUIClass::oTurn = true;
+bool SubGUIClass::winner = false;
+int SubGUIClass::p1Score = 0;
+int SubGUIClass::p2Score = 0;
+wxString SubGUIClass::Player1 = _T("O");
+wxString SubGUIClass::Player2 = _T("X");
+wxString SubGUIClass::currentPlayer = Player1;
+
+void SubGUIClass::checkBoard(){
+	int filled = 0;
+	for (int i = 0; i < 5; i++) {
+		if (buttonBox[i]->GetLabel() != _T("")){
+			//check for row wins
+			if (i % 3 == 0) {
+				if (buttonBox[i]->GetLabel() == buttonBox[i + 1]
+					->GetLabel()){
+					if (buttonBox[i]->GetLabel() == buttonBox
+						[i + 2]
+						->GetLabel()) {
+						
+						winner = true;
+					}
+				}
+			}
+			//check for column wins
+			if (i < 3){
+				if (buttonBox[i]->GetLabel() == buttonBox[i + 3]
+					->GetLabel()) {
+					if (buttonBox[i]->GetLabel() == buttonBox
+						[i + 6]
+						->GetLabel())
+						winner = true;
+				}
+			}
+			//checking first diagonal
+			if (i == 0){
+				if (buttonBox[0]->GetLabel() == buttonBox[4]
+					->GetLabel()){
+					if (buttonBox[0]->GetLabel() == 
+						buttonBox[8]->GetLabel())
+						
+						winner = true;
+				}
+			}
+			//checking second diagonal
+			if (i == 2){
+				if (buttonBox[2]->GetLabel() == buttonBox[4]
+					->GetLabel()) {
+					if (buttonBox[2]->GetLabel() == 
+						buttonBox[6]->GetLabel())
+						
+						winner = true;
+				}
+			}
+		}
+	}
+	//checking for tie
+	for (int i = 0; i < 9; i++){
+		if (buttonBox[i]->GetLabel() != _T("")){
+			filled++;
+			if (filled == 9){
+				if (!winner){
+					int answer = 
+					wxMessageBox(
+					   _T("Tie game. Quit in disgust?"), 
+					   _T("Confirm"), wxYES_NO, this);
+					
+					if (answer == wxYES)
+						this->Close();
+				}
+			}
+		}
+	}
+	//win game scenario
+	if (winner){
+
+		if (currentPlayer == Player1){
+			p1Score++;
+		}
+		else {
+			p2Score++;
+		}
+
+		int answer = wxMessageBox(
+				currentPlayer + _T(" wins.  Play again?"), 
+				_T("Confirm"), wxYES_NO, this);
+		if (answer == wxYES){
+			resetBoard();
+		}
+	}
+}
+//helper function, clears board
+void SubGUIClass::resetBoard(){
+	for (int i = 0; i < 9; i++){
+		buttonBox[i]->SetLabel(_T(""));
+	}
+	winner = false;
+}
+//asks for reset confirmation
+void SubGUIClass::onClickReset(wxCommandEvent& event)
+{
+	int answer = wxMessageBox(
+			_T("Are you sure you want to reset the board?"), 
+			_T("Confirm"), wxYES_NO, this);
+	if (answer == wxYES)
+		resetBoard();
+}
+//asks for exit confirmation
+void SubGUIClass::onExitItemSelect(wxCommandEvent& event)
+{
+	int answer = wxMessageBox(_T("What are you, a quitter?"), _T("Confirm"),
+	wxYES_NO, this);
+	
+	if (answer == wxYES)
+		this->Close();
+}
+//optional, so be kind
+void SubGUIClass::askForNames(wxCommandEvent& event)
+{
+	//a bunch of stuff that needs initialized
+	const wxString& default_value = _T("");
+	const wxString& caption = _T("Player 1's name");
+	const wxString& message = _T("Please enter Player 1's name.");
+	wxWindow *parent = NULL;
+	int x = wxDefaultCoord;
+	int y = wxDefaultCoord;
+	bool centre = true;
+
+	Player1 = (wxString)wxGetTextFromUser(message, caption, default_value,
+	parent, x, y, centre);
+	const wxString& caption2 = _T("Player 2's name");
+	const wxString& message2 = _T("Please enter Player 2's name.");
+	Player2 = (wxString)wxGetTextFromUser(message2, caption2, default_value,
+	parent, x, y, centre);
+	//clears scoreboard
+	p1Score = 0;
+	p2Score = 0;
+	statusBar->SetStatusText(currentPlayer + _T("'s turn!"));
+}
+
+void SubGUIClass::onClickDisplayPlayer(wxCommandEvent& event)
+{
+	//finds which button was clicked
+	int filled = 0;
+	wxButton *h = (wxButton *)event.GetEventObject();
+	if (h->GetLabel() == _T("")){
+		//IT'S PLAYER ONE'S TURN
+		if (oTurn){
+			currentPlayer = Player1;
+			h->SetLabel(currentPlayer);
+			statusBar->SetStatusText(Player2 + _T("'s turn!"));
+		}
+		//IT'S NOT PLAYER ONE'S TURN
+		else {
+			currentPlayer = Player2;
+			h->SetLabel(currentPlayer);
+			statusBar->SetStatusText(Player1 + _T("'s turn!"));
+		}
+		//uses my helper function
+		checkBoard();
+		oTurn = !oTurn;
+	}
+}
+
+void SubGUIClass::showScores(wxCommandEvent& event)
+{
+	//optional, so be kind, this is where I show the score.
+	wxString scoreTable = Player1 + _T(": ") + wxString::Format(wxT("%i"),
+	p1Score) + _T(" win(s).\n");
+	
+	scoreTable += Player2 + _T(": ") + wxString::Format(wxT("%i"),
+	p2Score) + _T(" win(s).\n");
+	
+	int answer = wxMessageBox(scoreTable, _T("Scoretable"), wxCANCEL, this);
+}
