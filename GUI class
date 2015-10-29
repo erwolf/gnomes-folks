@@ -1,0 +1,157 @@
+#include "GUIClass.h"
+
+///////////////////////////////////////////////////////////////////////////
+
+GUIClass::GUIClass( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* bSizer1;
+	bSizer1 = new wxBoxSizer( wxVERTICAL );
+	
+	m_panel6 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer9;
+	bSizer9 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer26;
+	bSizer26 = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizer26->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_button1 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_button1, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button2 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_button2, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button3 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_button3, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizer26->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	bSizer9->Add( bSizer26, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	wxBoxSizer* bSizer262;
+	bSizer262 = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizer262->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_button4 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer262->Add( m_button4, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button5 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer262->Add( m_button5, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button6 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer262->Add( m_button6, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizer262->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	bSizer9->Add( bSizer262, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer261;
+	bSizer261 = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizer261->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_button7 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer261->Add( m_button7, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button8 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer261->Add( m_button8, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button9 = new wxButton( m_panel6, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer261->Add( m_button9, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizer261->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	bSizer9->Add( bSizer261, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer8;
+	bSizer8 = new wxBoxSizer( wxHORIZONTAL );
+	
+	
+	bSizer8->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	m_button13 = new wxButton( m_panel6, wxID_ANY, wxT("Reset"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer8->Add( m_button13, 0, wxALIGN_CENTER_VERTICAL, 5 );
+	
+	m_button10 = new wxButton( m_panel6, wxID_ANY, wxT("Quit"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer8->Add( m_button10, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	
+	
+	bSizer8->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	bSizer9->Add( bSizer8, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	m_panel6->SetSizer( bSizer9 );
+	m_panel6->Layout();
+	bSizer9->Fit( m_panel6 );
+	bSizer1->Add( m_panel6, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	this->SetSizer( bSizer1 );
+	this->Layout();
+	m_menubar1 = new wxMenuBar( 0 );
+	m_menu1 = new wxMenu();
+	wxMenuItem* m_menuItem1;
+	m_menuItem1 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("Quit") ) + wxT('\t') + wxT("ALT-F4"), wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_menuItem1 );
+	
+	wxMenuItem* m_menuItem2;
+	m_menuItem2 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("Choose Names") ) + wxT('\t') + wxT("CTRL-N"), wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_menuItem2 );
+	
+	wxMenuItem* m_menuItem3;
+	m_menuItem3 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("View Scores") ) + wxT('\t') + wxT("CTRL-S"), wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_menuItem3 );
+	
+	m_menubar1->Append( m_menu1, wxT("File") ); 
+	
+	this->SetMenuBar( m_menubar1 );
+	
+	statusBar = this->CreateStatusBar( 1, wxST_SIZEGRIP, wxID_ANY );
+	
+	this->Centre( wxBOTH );
+	
+	// Connect Events
+	m_button1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button5->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button9->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button13->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickReset ), NULL, this );
+	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onExitItemSelect ), NULL, this );
+	this->Connect( m_menuItem1->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::onExitItemSelect ) );
+	this->Connect( m_menuItem2->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::askForNames ) );
+	this->Connect( m_menuItem3->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::showScores ) );
+}
+
+GUIClass::~GUIClass()
+{
+	// Disconnect Events
+	m_button1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button5->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button9->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickDisplayPlayer ), NULL, this );
+	m_button13->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onClickReset ), NULL, this );
+	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIClass::onExitItemSelect ), NULL, this );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::onExitItemSelect ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::askForNames ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIClass::showScores ) );
+	
+}
