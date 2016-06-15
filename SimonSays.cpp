@@ -1,3 +1,4 @@
+//This program will flash letters on the screen for a short amount of time. The amount of letters shown gradually increases, up to 15.
 #include <iostream>
 #include <unistd.h>
 #include <time.h>
