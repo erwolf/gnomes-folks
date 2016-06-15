@@ -1,7 +1,7 @@
-//HW8
+
 //Author: Emily Wolf
 //Date: 11/3/14
-//To see if a matrix has magical properties
+//To see if a matrix is a "magic square"  (up to size 5x5) (https://en.wikipedia.org/wiki/Magic_square)
 
 #include <iostream>
 using namespace std;
